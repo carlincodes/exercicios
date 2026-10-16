@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mágico Bruno | Ilusionismo e Espetáculos</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <style>
+        /* ==================== ESTILOS GERAIS & VARIÁVEIS ==================== */
+        :root {
+            --color-bg: #0a0a0c;          /* Fundo Preto Deep */
+            --color-card-bg: #14161d;     /* Fundo dos Cards */
+            --color-text: #ffffff;        /* Letras Brancas */
+            --color-text-sub: #b3b3b3;    /* Subtítulos/Descrição */
+            
+            /* Destaques em Azul */
+            --color-blue-primary: #00a2ff;
+            --color-blue-hover: #0077ff;
+            --color-blue-glow: rgba(0, 162, 255, 0.4);
+            --color-blue-border: #0055ff;
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+
+        section {
+            padding: 48px 8%;
+        }
+
+        /* Botões Padrão */
+        .btn-default {
+            border: 2px solid var(--color-blue-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--color-blue-primary);
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 10px 20px;
+            font-weight: 600;
+            box-shadow: 0px 0px 15px var(--color-blue-glow);
+            cursor: pointer;
+            transition: all .3s ease;
+            text-decoration: none;
+        }
+
+        .btn-default:hover {
+            background-color: var(--color-blue-hover);
+            border-color: var(--color-blue-hover);
+            box-shadow: 0px 0px 25px var(--color-blue-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Mídias Sociais */
+        .social-media-buttons {
+            display: flex;
+            gap: 18px;
+        }
+
+        .social-media-buttons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-blue-primary);
+            font-size: 1.25rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--color-blue-primary);
+            box-shadow: 0px 0px 10px var(--color-blue-glow);
+            transition: all .3s ease;
+        }
+
+        .social-media-buttons a:hover {
+            background-color: var(--color-blue-primary);
+            color: #ffffff;
+            box-shadow: 0px 0px 20px var(--color-blue-primary);
+            transform: translateY(-3px);
+        }
+
+        .section-title {
+            color: var(--color-blue-primary);
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 2.2rem;
+            color: var(--color-text);
+            margin-top: 5px;
+        }
+
+        /* ==================== HEADER & NAVBAR ==================== */
+        header {
+            width: 100%;
+            padding: 20px 8%;
+            position: sticky;
+            top: 0;
+            background-color: rgba(10, 10, 12, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 162, 255, 0.2);
+            z-index: 10;
+        }
+
+        #navbar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #nav_logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #nav_logo i {
+            color: var(--color-blue-primary);
+            text-shadow: 0 0 10px var(--color-blue-primary);
+        }
+
+        #nav_list {
+            display: flex;
+            list-style: none;
+            gap: 48px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--color-text-sub);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover,
+        .nav-item.active a {
+            color: var(--color-blue-primary);
+            border-bottom: 2px solid var(--color-blue-primary);
+            padding-bottom: 4px;
+            text-shadow: 0 0 8px var(--color-blue-glow);
+        }
+
+        #mobile_btn {
+            display: none;
+            color: var(--color-blue-primary);
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        #mobile_menu {
+            display: none;
+        }
+
+        /* ==================== HOME / SOBRE ==================== */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: calc(100vh - 91px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #cta {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            z-index: 2;
+        }
+
+        #cta .title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            color: var(--color-text);
+        }
+
+        #cta .title span {
+            color: var(--color-blue-primary);
+            text-shadow: 0 0 15px var(--color-blue-glow);
+        }
+
+        #cta .description {
+            font-size: 1.1rem;
+            color: var(--color-text-sub);
+            line-height: 1.6;
+        }
+
+        #cta_buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        #phone_button {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-blue-primary);
+            padding: 8px 16px;
+            font-weight: 500;
+            border-radius: 12px;
+            color: var(--color-text);
+            text-decoration: none;
+            transition: all .3s ease;
+        }
+
+        #phone_button:hover {
+            box-shadow: 0 0 15px var(--color-blue-glow);
+            border-color: var(--color-blue-hover);
+        }
+
+        #phone_button .icon-box {
+            color: var(--color-blue-primary);
+        }
+
+        #banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            z-index: 2;
+        }
+
+        #banner img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0px 0px 20px rgba(0, 162, 255, 0.3));
+            border-radius: 20px;
+        }
+
+        .shape {
+            background: radial-gradient(circle, var(--color-blue-glow) 0%, rgba(0,0,0,0) 70%);
+            width: 600px;
+            height: 600px;
+            position: absolute;
+            top: 50%;
+            right: -100px;
+            transform: translateY(-50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ==================== SHOWS (CARDS) ==================== */
+        #menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        #dishes {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .dish {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 20px;
+            gap: 16px;
+            padding: 24px;
+            background-color: var(--color-card-bg);
+            border: 1px solid rgba(0, 162, 255, 0.2);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .dish:hover {
+            border-color: var(--color-blue-primary);
+            box-shadow: 0px 0px 25px var(--color-blue-glow);
+            transform: translateY(-5px);
+        }
+
+        .dish-heart {
+            position: absolute;
+            background-color: var(--color-blue-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #ffffff;
+            width: 60px;
+            height: 60px;
+            right: -10px;
+            top: -10px;
+            border-radius: 0px 20px 0px 30px;
+            box-shadow: 0 0 10px var(--color-blue-glow);
+        }
+
+        .dish-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dish-title {
+            font-size: 1.4rem;
+            color: var(--color-text);
+            text-align: center;
+        }
+
+        .dish-description {
+            color: var(--color-text-sub);
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .dish-rate {
+            color: var(--color-blue-primary);
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .dish-rate span {
+            color: var(--color-text-sub);
+            margin-left: 5px;
+            font-size: 0.85rem;
+        }
+
+        .dish-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dish-price h4 {
+            color: var(--color-blue-primary);
+            font-size: 1.1rem;
+        }
+
+        /* ==================== APRESENTAÇÕES / DEPOIMENTOS ==================== */
+        #testimonials {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 48px;
+        }
+
+        #testimonial_chef {
+            width: 450px;
+            max-width: 100%;
+            border-radius: 20px;
+            border: 2px solid var(--color-blue-primary);
+            box-shadow: 0 0 20px var(--color-blue-glow);
+        }
+
+        #testimonials_content {
+            width: 50%;
+        }
+
+        #feedbacks {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feedback {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background-color: var(--color-card-bg);
+            border: 1px solid rgba(0, 162, 255, 0.2);
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.3s ease;
+        }
+
+        .feedback:hover {
+            border-color: var(--color-blue-primary);
+        }
+
+        .feedback-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--color-blue-primary);
+        }
+
+        .feedback-content {
+            width: 100%;
+        }
+
+        .feedback-content p:first-child {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 6px;
+        }
+
+        .feedback-content p span {
+            color: var(--color-blue-primary);
+        }
+
+        .feedback-content p:last-child {
+            color: var(--color-text-sub);
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background-color: #050507;
+            border-top: 1px solid rgba(0, 162, 255, 0.2);
+            padding-top: 20px;
+        }
+
+        #footer_items {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 8%;
+            align-items: center;
+        }
+
+        #copyright {
+            color: var(--color-text-sub);
+            font-weight: 500;
+        }
+
+        /* ==================== RESPONSIVIDADE ==================== */
+        @media screen and (max-width: 1170px) {
+            #nav_list,
+            #navbar .btn-default {
+                display: none;
+            }
+
+            #mobile_btn {
+                display: block;
+            }
+
+            #mobile_menu.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: var(--color-card-bg);
+                padding: 20px;
+                border-bottom: 1px solid var(--color-blue-primary);
+            }
+
+            #mobile_nav_list {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                margin-bottom: 20px;
+                text-align: center;
+                list-style: none;
+            }
+
+            #home {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+                padding-top: 40px;
+            }
+
+            #cta {
+                width: 100%;
+                align-items: center;
+            }
+
+            #cta .title {
+                font-size: 2.5rem;
+            }
+
+            #banner {
+                width: 100%;
+            }
+
+            #testimonials {
+                flex-direction: column;
+            }
+
+            #testimonials_content {
+                width: 100%;
+            }
+
+            #testimonial_chef {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            #cta_buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            #phone_button, .btn-default {
+                width: 100%;
+                justify-content: center;
+            }
+
+            #footer_items {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .feedback {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div id="nav_logo">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Mágico Bruno
+            </div>
+
+            <ul id="nav_list">
+                <li class="nav-item active">
+                    <a href="#home">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#menu">Shows</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#testimonials">Apresentações</a>
+                </li>
+            </ul>
+
+            <a href="https://wa.me/5551923423243" target="_blank" class="btn-default">
+                Pedir Orçamento
+            </a>
+
+            <button id="mobile_btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+
+        <div id="mobile_menu">
+            <ul id="mobile_nav_list">
+                <li class="nav-item">
+                    <a href="#home">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#menu">Shows</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#testimonials">Apresentações</a>
+                </li>
+            </ul>
+
+            <a href="https://wa.me/5551923423243" target="_blank" class="btn-default">
+                Pedir Orçamento
+            </a>
+        </div>
+    </header>
+
+    <main id="content">
+        <!-- SEÇÃO SOBRE (HOME) -->
+        <section id="home">
+            <div class="shape"></div>
+            <div id="cta">
+                <h1 class="title">
+                    A magia que vai impressionar 
+                    <span>seu público</span>
+                </h1>
+
+                <p class="description">
+                    Transforme seu evento em uma experiência inesquecível com o Mágico Bruno. Ilusionismo moderno, interatividade e momentos de puro fascínio para todas as idades.
+                </p>
+
+                <div id="cta_buttons">
+                    <a href="#menu" class="btn-default">
+                        Ver Shows
+                    </a>
+
+                    <a href="tel:+5551923423243" id="phone_button">
+                        <span class="icon-box"><i class="fa-solid fa-phone"></i></span>
+                        (51) 92342-3243
+                    </a>
+                </div>
+
+                <div class="social-media-buttons">
+                    <a href="#" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div id="banner">
+                <img src="src/images/hero.png" alt="Mágico Bruno em Apresentação">
+            </div>
+        </section>
+
+        <!-- SEÇÃO SHOWS -->
+        <section id="menu">
+            <h2 class="section-title">Espetáculos</h2>
+            <h3 class="section-subtitle">Confira os nossos Shows</h3>
+
+            <div id="dishes">
+                <!-- Card 1: Mágica de Proximidade -->
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-hat-wizard"></i>
+                    </div>
+                    <img src="src/images/dish.png" class="dish-image" alt="Mágica de Proximidade">
+                    <h3 class="dish-title">Mágica de Proximidade</h3>
+                    <span class="dish-description">
+                        Ilusionismo interativo e de perto (Close-up) direto nas mesas ou grupos de convidados. Impossível não se surpreender!
+                    </span>
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <div class="dish-price">
+                        <h4>Close-up</h4>
+                        <a href="https://wa.me/5551923423243?text=Olá,%20gostaria%20de%20um%20orçamento%20para%20Mágica%20de%20Proximidade" class="btn-default">
+                            Contratar
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Show Corporativo -->
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <img src="src/images/dish2.png" class="dish-image" alt="Show Corporativo">
+                    <h3 class="dish-title">Show Corporativo</h3>
+                    <span class="dish-description">
+                        Apresentação personalizada para convenções, lançamentos de produtos e festas de fim de ano da sua empresa.
+                    </span>
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <div class="dish-price">
+                        <h4>Empresas</h4>
+                        <a href="https://wa.me/5551923423243?text=Olá,%20gostaria%20de%20um%20orçamento%20para%20Show%20Corporativo" class="btn-default">
+                            Contratar
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Mágica Infantil -->
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-child"></i>
+                    </div>
+                    <img src="src/images/dish3.png" class="dish-image" alt="Mágica Infantil">
+                    <h3 class="dish-title">Mágica Infantil</h3>
+                    <span class="dish-description">
+                        Espetáculo lúdico, muito divertido e altamente participativo focado em festas infantis e aniversários.
+                    </span>
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <div class="dish-price">
+                        <h4>Infantil</h4>
+                        <a href="https://wa.me/5551923423243?text=Olá,%20gostaria%20de%20um%20orçamento%20para%20Mágica%20Infantil" class="btn-default">
+                            Contratar
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Teatro -->
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-masks-theater"></i>
+                    </div>
+                    <img src="src/images/dish4.png" class="dish-image" alt="Teatro">
+                    <h3 class="dish-title">Teatro</h3>
+                    <span class="dish-description">
+                        Um grande show de ilusionismo no palco, com iluminação especial, som envolvente e truques impressionantes.
+                    </span>
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <div class="dish-price">
+                        <h4>Palco</h4>
+                        <a href="https://wa.me/5551923423243?text=Olá,%20gostaria%20de%20um%20orçamento%20para%20Teatro" class="btn-default">
+                            Contratar
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 5: Palestra SIPAT -->
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-hard-hat"></i>
+                    </div>
+                    <img src="src/images/dish.png" class="dish-image" alt="Palestra SIPAT">
+                    <h3 class="dish-title">Palestra SIPAT</h3>
+                    <span class="dish-description">
+                        Conscientização sobre segurança do trabalho transmitida de forma leve, impactante e usando a mágica como ferramenta.
+                    </span>
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <div class="dish-price">
+                        <h4>SIPAT</h4>
+                        <a href="https://wa.me/5551923423243?text=Olá,%20gostaria%20de%20um%20orçamento%20para%20Palestra%20SIPAT" class="btn-default">
+                            Contratar
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 6: Palestras -->
+                <div class="dish">
+                    <div class="dish-heart">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <img src="src/images/dish2.png" class="dish-image" alt="Palestras Motivacionais">
+                    <h3 class="dish-title">Palestras</h3>
+                    <span class="dish-description">
+                        Palestras motivacionais e de foco em resultados que mesclam conteúdo transformador com números de ilusionismo.
+                    </span>
+                    <div class="dish-rate">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <div class="dish-price">
+                        <h4>Motivacional</h4>
+                        <a href="https://wa.me/5551923423243?text=Olá,%20gostaria%20de%20um%20orçamento%20para%20Palestras" class="btn-default">
+                            Contratar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO APRESENTAÇÕES / DEPOIMENTOS -->
+        <section id="testimonials">
+            <img src="src/images/chef.png" id="testimonial_chef" alt="Mágico Bruno">
+
+            <div id="testimonials_content">
+                <h2 class="section-title">Apresentações</h2>
+                <h3 class="section-subtitle">O que os clientes dizem</h3>
+
+                <div id="feedbacks">
+                    <div class="feedback">
+                        <img src="src/images/avatar.png" class="feedback-avatar" alt="Foto do Cliente">
+                        <div class="feedback-content">
+                            <p>
+                                Maria Silva
+                                <span>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </p>
+                            <p>
+                                "O Mágico Bruno foi o ponto alto da nossa festa corporativa! Todos os convidados ficaram sem palavras com o show."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="feedback">
+                        <img src="src/images/avatar.png" class="feedback-avatar" alt="Foto do Cliente">
+                        <div class="feedback-content">
+                            <p>
+                                João Pereira
+                                <span>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </span>
+                            </p>
+                            <p>
+                                "A palestra na nossa SIPAT foi sensacional! Conseguiu prender a atenção de toda a equipe e passar a mensagem perfeita."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/5551923423243" target="_blank" class="btn-default">
+                    Garantir Minha Data
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer_items">
+            <span id="copyright">
+                &copy; Mágico Bruno - Todos os direitos reservados
+            </span>
+
+            <div class="social-media-buttons">
+                <a href="#" aria-label="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT DE INTERATIVIDADE -->
+    <script>
+        $(document).ready(function() {
+            // Menu Mobile Toggle
+            $('#mobile_btn').on('click', function () {
+                $('#mobile_menu').toggleClass('active');
+                $('#mobile_btn').find('i').toggleClass('fa-xmark');
+            });
+
+            // Scroll Ativo
+            const sections = $('section');
+            const navItems = $('.nav-item');
+
+            $(window).on('scroll', function () {
+                const header = $('header');
+                const scrollPosition = $(window).scrollTop() - header.outerHeight();
+
+                let activeSectionIndex = 0;
+
+                if (scrollPosition <= 0) {
+                    header.css('box-shadow', 'none');
+                } else {
+                    header.css('box-shadow', '0px 5px 15px rgba(0, 162, 255, 0.15)');
+                }
+
+                sections.each(function(i) {
+                    const section = $(this);
+                    const sectionTop = section.offset().top - 120;
+                    const sectionBottom = sectionTop + section.outerHeight();
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        activeSectionIndex = i;
+                        return false;
+                    }
+                });
+
+                navItems.removeClass('active');
+                $(navItems[activeSectionIndex]).addClass('active');
+            });
+
+            // Animações com ScrollReveal
+            ScrollReveal().reveal('#cta', {
+                origin: 'left',
+                duration: 1500,
+                distance: '20%'
+            });
+
+            ScrollReveal().reveal('.dish', {
+                origin: 'bottom',
+                duration: 1500,
+                distance: '20%',
+                interval: 100
+            });
+
+            ScrollReveal().reveal('#testimonial_chef', {
+                origin: 'left',
+                duration: 1000,
+                distance: '20%'
+            });
+
+            ScrollReveal().reveal('.feedback', {
+                origin: 'right',
+                duration: 1000,
+                distance: '20%',
+                interval: 100
+            });
+        });
+    </script>
+</body>
+</html>
